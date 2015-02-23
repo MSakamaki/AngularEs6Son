@@ -3,13 +3,14 @@ System.config({
   "transpiler": "babel",
   "paths": {
     "*": "*.js",
-    "github:*": "https://github.jspm.io/*.js",
-    "npm:*": "https://npm.jspm.io/*.js"
+    "github:*": "jspm_packages/github/*.js",
+    "npm:*": "jspm_packages/npm/*.js"
   }
 });
 
 System.config({
   "map": {
+    "angular": "github:angular/bower-angular@1.3.13",
     "css": "github:systemjs/plugin-css@0.1.6",
     "image": "github:systemjs/plugin-image@0.1.0",
     "jquery": "github:components/jquery@2.1.3",

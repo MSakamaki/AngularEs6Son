@@ -1,7 +1,9 @@
-import Bootstrap from './bootstrap';
+import angular from 'angular';
 
+// ここにひたすらAngularJSのコードを書いて行く
+var app = angular.module('Es6SonApp', []);
 
-var bs = new Bootstrap();
+app.controller('MainCtroller', function ($scope) {
+    this.hello = 'AngularJS';
+  });
 
-bs.start('Push!!','Get To','Wellcome ES6 JSPM Template');
-bs.useArrows([1,2,3,4]);
