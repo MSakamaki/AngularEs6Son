@@ -6,8 +6,8 @@ var browserSync = require('browser-sync');
 var config = require('../gulp.config');
 
 var defaultSyncFile = [
-    './client/app/**/*.js',
-    './client/app/**/*.css',
+    //'./client/app/**/*.js',
+    //'./client/app/**/*.css',
     './client/**/*.html'
   ];
 

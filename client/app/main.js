@@ -1,5 +1,6 @@
 import Bootstrap from './bootstrap';
 
+
 var bs = new Bootstrap();
 
 bs.start('Push!!','Get To','Wellcome ES6 JSPM Template');

@@ -1,12 +1,17 @@
 /*jslint node: true */
 'use strict';
 
-var server = require('gulp-express');
+// https://github.com/JacksonGariety/gulp-nodemon
+var nodemon = require('gulp-nodemon');
 var gulp = require('gulp');
 
 // express(mock)
-gulp.task('express', function(){
-  server.run({
-    file: './server/app.js'
+gulp.task('express:dev', function(){
+  nodemon({
+    script: './server/app.js',
+    env: {
+      // just: outer file
+      'PORT': 8000
+    }
   });
 });

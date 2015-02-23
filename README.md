@@ -5,10 +5,10 @@ JSフレームワーク非依存のプロジェクトテンプレート
 
 | Project | status |
 | ------ | ------ |
-| Build Status | [![Build Status](https://travis-ci.org/MSakamaki/gulpJSPM.svg?branch=master)](https://travis-ci.org/MSakamaki/gulpJSPM) |
-| Code Climate | [![Code Climate](https://codeclimate.com/github/MSakamaki/gulpJSPM/badges/gpa.svg)](https://codeclimate.com/github/MSakamaki/gulpJSPM) |
-| Dependency Status | [![Dependency Status](https://gemnasium.com/MSakamaki/gulpJSPM.svg)](https://gemnasium.com/MSakamaki/gulpJSPM) |
-| Application Covoiturage | [![Test Coverage](https://codeclimate.com/github/MSakamaki/gulpJSPM/badges/coverage.svg)](https://codeclimate.com/github/MSakamaki/gulpJSPM) |
+| Build Status ||
+| Code Climate ||
+| Dependency Status ||
+| Application Covoiturage ||
 
 ### Get Started
 
@@ -17,8 +17,8 @@ JSフレームワーク非依存のプロジェクトテンプレート
 # jspmをグローバルインストール
 npm install -g jspm
 
-git clone https://github.com/MSakamaki/gulpJSPM
-cd gulpJSPM
+git clone https://github.com/MSakamaki/GJBoT
+cd GJBoT
 
 npm install
 jspm install
@@ -28,7 +28,7 @@ jspm install
 ### es6 transpiler use switching
 
 ```sh
-jspm dl-loader --6to5
+jspm dl-loader --Babel
 # or
 jspm dl-loader --traceur
 ```
@@ -54,18 +54,18 @@ gulp help
 ### Roadmap
 
  + **Develop**
-    + [x] ライブリロード開発
+    + [ ] ライブリロード開発
  + **DOCUMENT** [yuidoc](http://yui.github.io/yuidoc/)
-    + [x] ドキュメントを作成＆表示(ライブリロード作成)
-    + [x] ドキュメントを作成
+    + [ ] ドキュメントを作成＆表示(ライブリロード作成)
+    + [ ] ドキュメントを作成
  + **TEST**
-    + [x] karmaの実行
-    + [x] End to End Test
+    + [ ] karmaの実行
+    + [ ] End to End Test
     + [ ] apiに対するテスト
  + **REPORT**
-    + [x] covorage
+    + [ ] covorage
       + [ ] [jspm covorage][covorage report optimization](https://github.com/Workiva/karma-jspm/issues/22)
-      + [x] [isparta es6(6to5) covorage](https://github.com/douglasduteil/isparta)
+      + [ ] [isparta es6(6to5) covorage](https://github.com/douglasduteil/isparta)
     + [ ] software metrix(plato)
       + [ ] [plato](https://github.com/es-analysis/plato/issues/127)
  + **BUILD**
@@ -80,7 +80,7 @@ gulp help
      + [ ] `--env=releace` リリース用の設定ファイルを使う
  + cross platform
    + [ ] Firefox OS アプリ対応
-     + [x] Firefox OSエミュレータ起動
+     + [ ] Firefox OSエミュレータ起動
      + [ ] ライブリロード開発
      + [ ] デプロイ
    + [ ] Cordova対応

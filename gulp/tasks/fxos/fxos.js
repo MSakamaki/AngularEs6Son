@@ -1,6 +1,6 @@
 /*jslint node: true */
 'use strict';
-
+/*
 var startSimulator = require('node-firefox-start-simulator');
 var connect = require('node-firefox-connect');
 
@@ -29,4 +29,4 @@ gulp.task('fxos:v22',function(){
     });
   });
 });
-
+*/

@@ -6,7 +6,7 @@ var gulp = require('gulp');
 gulp.task('serve', [
   'lint',
   'browser-sync',
-  'express'
+  'express:dev'
 ]);
 
 gulp.task('serve:test', ['serve'],function(){

@@ -33,6 +33,6 @@ gulp.task('protractor', [
     'build-es6:e2e',
     'webdriver_update',
     'browser-sync:test',
-    'express'
+    'express:dev'
   ], 
   runProtractor);
