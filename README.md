@@ -1,6 +1,8 @@
 jspmプロジェクト雛形
 ----
 
+[![Join the chat at https://gitter.im/MSakamaki/AngularEs6Son](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MSakamaki/AngularEs6Son?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 JSフレームワーク非依存のプロジェクトテンプレート
 
 | Project | status |
