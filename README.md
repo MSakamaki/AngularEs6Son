@@ -9,7 +9,7 @@ AngularJS ES6 ハッカソンテンプレート
 # jspmをグローバルインストール
 npm install -g jspm
 
-git clone https://github.com/MSakamaki/GJBoT
+git clone https://github.com/MSakamaki/AngularEs6Son.git
 cd GJBoT
 
 npm install
