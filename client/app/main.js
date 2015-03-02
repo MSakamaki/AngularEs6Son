@@ -34,7 +34,7 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
       }
     })
 
-    // ○○一覧
+    // メンバー一覧
     .state('app.root.list', {
       url: '^/list',
       views: {
@@ -46,7 +46,7 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
       }
     })
 
-    // ○○登録
+    // メンバー登録
     .state('app.root.add', {
       url: '^/add',
       views: {
@@ -58,7 +58,7 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
       }
     })
 
-    // ○○編集
+    // メンバー編集
     .state('app.root.edit', {
       url: '^/edit/:id',
       views: {
@@ -68,7 +68,7 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
           controller: 'EditController'
         }
       }
-    })
+    });
 });
 
 app.controller('ListController', function ($http) {
@@ -85,7 +85,7 @@ app.controller('ListController', function ($http) {
         list.members = data;
       });
     });
-  }
+  };
 });
 app.controller('AddController', function ($state, $http) {
   var add = this;
@@ -96,7 +96,7 @@ app.controller('AddController', function ($state, $http) {
       .success(function(){
         $state.go('app.root.list');
       });
-  }
+  };
 });
 app.controller('EditController', function ($state, $stateParams, $http) {
   var edit = this;
@@ -110,6 +110,6 @@ app.controller('EditController', function ($state, $stateParams, $http) {
     .success(function() {
       $state.go('app.root.list');
     });
-  }
+  };
 });
 
