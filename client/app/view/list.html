@@ -8,6 +8,7 @@
     {{member.name}}
     {{member.register}}
     <span ui-sref="app.root.edit({id: member.id })">編集</span>
+    <span ng-click="list.delete(member.id)">削除</span>
   </li>
 </ul>
 </div>

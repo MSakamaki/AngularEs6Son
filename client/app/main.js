@@ -77,6 +77,15 @@ app.controller('ListController', function ($http) {
     .success(function(data) {
       list.members = data;
   });
+  list.delete = function(id){
+    $http.delete('http://localhost:8000/api/menbers/' + id)
+    .success(function() {
+      $http.get('http://localhost:8000/api/menbers')
+      .success(function(data) {
+        list.members = data;
+      });
+    });
+  }
 });
 app.controller('AddController', function ($state, $http) {
   var add = this;
@@ -89,11 +98,18 @@ app.controller('AddController', function ($state, $http) {
       });
   }
 });
-app.controller('EditController', function ($stateParams, $http) {
+app.controller('EditController', function ($state, $stateParams, $http) {
   var edit = this;
   $http.get('http://localhost:8000/api/menbers/' + $stateParams.id)
     .success(function(data) {
       edit.member = data;
   });
+  edit.update = function(){
+    $http.put('http://localhost:8000/api/menbers/' + $stateParams.id,
+      {name: edit.member.name})
+    .success(function() {
+      $state.go('app.root.list');
+    });
+  }
 });
 
