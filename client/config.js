@@ -3,17 +3,21 @@ System.config({
   "transpiler": "babel",
   "paths": {
     "*": "*.js",
-    "github:*": "jspm_packages/github/*.js",
-    "npm:*": "jspm_packages/npm/*.js"
+    "github:*": "https://github.jspm.io/*.js",
+    "npm:*": "https://npm.jspm.io/*.js"
   }
 });
 
 System.config({
   "map": {
-    "angular": "github:angular/bower-angular@1.3.13",
+    "angular": "github:angular/bower-angular@1.3.14",
+    "angular-ui-router": "github:angular-ui/ui-router@0.2.13",
     "css": "github:systemjs/plugin-css@0.1.6",
     "image": "github:systemjs/plugin-image@0.1.0",
     "jquery": "github:components/jquery@2.1.3",
+    "github:angular-ui/ui-router@0.2.13": {
+      "angular": "github:angular/bower-angular@1.3.14"
+    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
