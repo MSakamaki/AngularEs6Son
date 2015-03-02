@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+  <base href="/">
   <meta charset="UTF-8">
   <title>Hello Gulp JSPM Template</title>
 </head>
 <body>
 
   <div ng-app="Es6SonApp">
-    <div ng-include="'app/main.html'" ng-controller="MainCtroller as mainCtrl"></div>
+    <!--div ng-include="'app/main.html'" ng-controller="MainCtroller as mainCtrl"></div-->
+    <div ui-view=""></div>
   </div>
 <script src="jspm_packages/system.js"></script>
 <script src="config.js"></script>

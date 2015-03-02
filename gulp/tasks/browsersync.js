@@ -3,6 +3,7 @@
 
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
+var spa         = require("browser-sync-spa");
 var config = require('../gulp.config');
 
 var defaultSyncFile = [
@@ -10,6 +11,10 @@ var defaultSyncFile = [
     './client/app/**/*.css',
     './client/**/*.html'
   ];
+
+browserSync.use(spa({
+    selector: "index.html" // Only needed for angular apps
+}));
 
 gulp.task('browser-sync', function() {
   browserSync.init(defaultSyncFile,{
