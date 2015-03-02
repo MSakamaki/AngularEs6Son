@@ -1,4 +1,17 @@
 <div>
-<div ui-sref="app.root.list()">登録完了(一覧へ)</div>
-登録画面
+
+<h2>登録画面</h2>
+
+
+<form novalidate name="member_form">
+  <div>
+    <label for="name">お名前</label>
+    <div class="form-group col-sm-10">
+      <input ng-model="add.member.name" type="text" 
+             name="name"
+             placeholder="鈴木 百太郎" required>
+    </div>
+  </div>
+</form>
+<button ng-click="add.register()">登録完了(一覧へ)</button>  
 </div>

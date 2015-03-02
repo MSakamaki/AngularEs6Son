@@ -29,7 +29,7 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
           templateUrl: 'app/view/home.html'
         },
         'footer@app': {
-          templateUrl: 'app/view/header.html'
+          templateUrl: 'app/view/footer.html'
         }
       }
     })
@@ -60,7 +60,7 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
 
     // ○○編集
     .state('app.root.edit', {
-      url: '^/edit',
+      url: '^/edit/:id',
       views: {
         'contents@app': {
           templateUrl: 'app/view/edit.html',
@@ -71,12 +71,29 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
     })
 });
 
-app.controller('ListController', function () {
-    this.hello = 'AngularJS';
+app.controller('ListController', function ($http) {
+  var list = this;
+  $http.get('http://localhost:8000/api/menbers')
+    .success(function(data) {
+      list.members = data;
   });
-app.controller('AddController', function () {
-    this.hello = 'AngularJS';
+});
+app.controller('AddController', function ($state, $http) {
+  var add = this;
+  this.register = function(){
+    console.log(add);
+    $http.post('http://localhost:8000/api/menbers',
+      {name: add.member.name})
+      .success(function(){
+        $state.go('app.root.list');
+      });
+  }
+});
+app.controller('EditController', function ($stateParams, $http) {
+  var edit = this;
+  $http.get('http://localhost:8000/api/menbers/' + $stateParams.id)
+    .success(function(data) {
+      edit.member = data;
   });
-app.controller('EditController', function () {
-    this.hello = 'AngularJS';
-  });
+});
+
