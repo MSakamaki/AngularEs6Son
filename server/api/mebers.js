@@ -2,10 +2,10 @@ exports = module.exports = function(app){
 
   /* seed */
   var menbers = [
-      {id:1, name:'鈴木 一郎', register: new Date('2015-01-02').getTime()},
-      {id:2, name:'鈴木 次郎', register: new Date('2015-01-04').getTime()},
-      {id:3, name:'鈴木 三郎', register: new Date('2015-01-07').getTime()},
-      {id:4, name:'鈴木 四郎', register: new Date('2015-01-12').getTime()}
+      {id:1, name:'鈴木 一郎', register: new Date('2015-01-02').getTime(), update: new Date('2015-01-01').getTime(), country:'JP'},
+      {id:2, name:'鈴木 次郎', register: new Date('2015-01-04').getTime(), update: new Date('2015-01-01').getTime(), country:'JP'},
+      {id:3, name:'鈴木 三郎', register: new Date('2015-01-07').getTime(), update: new Date('2015-01-01').getTime(), country:'JP'},
+      {id:4, name:'鈴木 四郎', register: new Date('2015-01-12').getTime(), update: new Date('2015-01-01').getTime(), country:'JP'}
       ];
   var index = menbers.length+1;
 
@@ -31,6 +31,8 @@ exports = module.exports = function(app){
     menbers.forEach(function(menber){
       if (menber.id === parseInt(id)) {
         menber.name = body.name;
+        menber.update = new Date().getTime();
+        menber.country = body.country;
       }
     });
     res.status(200).send('register!');
@@ -43,7 +45,9 @@ exports = module.exports = function(app){
     menbers.push({
       id:index++,
       name: body.name,
-      register: new Date().getTime()
+      register: new Date().getTime(),
+      update: new Date().getTime(),
+      country: body.country
     });
     res.status(200).send('register!');
   });

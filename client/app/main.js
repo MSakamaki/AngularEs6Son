@@ -89,30 +89,63 @@ app.controller('ListController', function ($http) {
 });
 app.controller('AddController', function ($state, $http) {
   var add = this;
-  this.register = function(){
-    console.log(add);
+  add.countrys=[];
+  $http.get('http://localhost:8000/api/countrys')
+    .success(function(data) {
+      add.countrys = data;
+  });
+  add.register = function(){
     $http.post('http://localhost:8000/api/menbers',
-      {name: add.member.name})
-      .success(function(){
+      {
+        name: add.member.name,
+        country: add.member.country.code
+      }).success(function(){
         $state.go('app.root.list');
       });
   };
 });
 app.controller('EditController', function ($state, $stateParams, $http) {
   var edit = this;
-  $http.get('http://localhost:8000/api/menbers/' + $stateParams.id)
+  edit.countrys=[];
+  $http.get('http://localhost:8000/api/countrys')
     .success(function(data) {
-      edit.member = data;
+      edit.countrys = data;
+
+      $http.get('http://localhost:8000/api/menbers/' + $stateParams.id)
+        .success(function(data) {
+          edit.member = data;
+          angular.forEach(edit.countrys, function(v){
+            if(v.code === edit.member.country) edit.member.country = v;
+          });
+      });
   });
+
   edit.update = function(){
     $http.put('http://localhost:8000/api/menbers/' + $stateParams.id,
-      {name: edit.member.name})
-    .success(function() {
+      {
+        name: edit.member.name,
+        country: edit.member.country.code
+      }).success(function() {
       $state.go('app.root.list');
     });
   };
 });
-app.filter('dateFormat', function(lpad) {
+app.filter('dateFormat', function() {
+  var lpad = function(value,str,len) {
+    var padStr = "";
+    var addlen = 0;
+    if (value == null) {
+      addlen = len;
+    } else {
+      addlen = parseInt(len) - parseInt(String(value).length);
+      padStr = String(value);
+    }
+    for(var i=0;i<addlen;i++){
+      padStr = "" + str + padStr;
+    }
+    return padStr;
+  };
+
   return function(input) {
     var dt = new Date(input);
     return dt.getFullYear() + '/' +
@@ -120,21 +153,21 @@ app.filter('dateFormat', function(lpad) {
            lpad(dt.getDate(),'0',2);
   };
 });
-app.service('lpad',function(){
-  return function(value,str,len) {
-    var padStr = "";
-    var addlen = 0;
-
-    if (value == null) {
-      addlen = len;
-    } else {
-      addlen = parseInt(len) - parseInt(String(value).length);
-      padStr = String(value);
-    }
-    
-    for(var i=0;i<addlen;i++){
-      padStr = "" + str + padStr;
-    }
-    return padStr;
-  }
+app.filter('countryName', function($http) {
+  var country=[];
+  $http.get('http://localhost:8000/api/countrys')
+    .success(function(data) {
+      country = data;
+  });
+  return function(input) {
+    var ret='';
+    angular.forEach(country,function(v){
+      if (v.code === input) ret = v.name;
+    });
+    return ret;
+  };
 });
+app.factory('member', function () {
+    var member = {};
+    return member;
+  });

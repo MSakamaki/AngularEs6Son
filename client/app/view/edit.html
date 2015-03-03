@@ -1,17 +1,24 @@
 <div>
 <div ui-sref="app.root.list()">編集完了(一覧へ)</div>
 <p>編集画面
-<p>{{edit.member.id}}
-<p>{{edit.member.name}}
-<p>{{edit.member.register | dateFormat}}
+<p>会員ID：{{edit.member.id}}
+<p>登録日：{{edit.member.register | dateFormat}}
 
 <form novalidate name="member_form">
   <div>
     <label for="name">名前の変更</label>
-    <div class="form-group col-sm-10">
+    <div>
       <input ng-model="edit.member.name" type="text" 
              name="name"
              placeholder="鈴木 更新太郎" required>
+    </div>
+  </div>
+  <div>
+    <label for="country">所属国</label>
+    <div>
+      <select ng-model="edit.member.country" name="country"
+        ng-options="c as c.name for c in edit.countrys"
+             ></select>
     </div>
   </div>
 </form>

@@ -6,10 +6,18 @@
 <form novalidate name="member_form">
   <div>
     <label for="name">お名前</label>
-    <div class="form-group col-sm-10">
+    <div>
       <input ng-model="add.member.name" type="text" 
              name="name"
              placeholder="鈴木 百太郎" required>
+    </div>
+  </div>
+  <div>
+    <label for="country">所属国</label>
+    <div>
+      <select ng-model="add.member.country" name="country"
+        ng-options="c as c.name for c in add.countrys"
+             ></select>
     </div>
   </div>
 </form>
