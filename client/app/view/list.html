@@ -6,7 +6,7 @@
   <li ng-repeat="member in list.members">
     {{member.id}}
     {{member.name}}
-    {{member.register}}
+    {{member.register | dateFormat}}
     <span ui-sref="app.root.edit({id: member.id })">編集</span>
     <span ng-click="list.delete(member.id)">削除</span>
   </li>

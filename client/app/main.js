@@ -112,4 +112,29 @@ app.controller('EditController', function ($state, $stateParams, $http) {
     });
   };
 });
+app.filter('dateFormat', function(lpad) {
+  return function(input) {
+    var dt = new Date(input);
+    return dt.getFullYear() + '/' +
+           lpad((dt.getMonth()+1),'0',2) + '/' +
+           lpad(dt.getDate(),'0',2);
+  };
+});
+app.service('lpad',function(){
+  return function(value,str,len) {
+    var padStr = "";
+    var addlen = 0;
 
+    if (value == null) {
+      addlen = len;
+    } else {
+      addlen = parseInt(len) - parseInt(String(value).length);
+      padStr = String(value);
+    }
+    
+    for(var i=0;i<addlen;i++){
+      padStr = "" + str + padStr;
+    }
+    return padStr;
+  }
+});
