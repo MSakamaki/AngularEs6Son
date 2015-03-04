@@ -14,6 +14,7 @@ cd GJBoT
 
 npm install
 jspm install
+jspm install angular-ui-router -o "{ main: 'angular-ui-router', 'angular-ui-router': {'deps': ['angular'] } }"
 
 ```
 
