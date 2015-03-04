@@ -73,14 +73,14 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
 
 app.controller('ListController', function ($http) {
   var list = this;
-  $http.get('http://localhost:8000/api/menbers')
+  $http.get('http://localhost:8000/api/members')
     .success(function(data) {
       list.members = data;
   });
   list.delete = function(id){
-    $http.delete('http://localhost:8000/api/menbers/' + id)
+    $http.delete('http://localhost:8000/api/members/' + id)
     .success(function() {
-      $http.get('http://localhost:8000/api/menbers')
+      $http.get('http://localhost:8000/api/members')
       .success(function(data) {
         list.members = data;
       });
@@ -95,7 +95,7 @@ app.controller('AddController', function ($state, $http) {
       add.countrys = data;
   });
   add.register = function(){
-    $http.post('http://localhost:8000/api/menbers',
+    $http.post('http://localhost:8000/api/members',
       {
         name: add.member.name,
         country: add.member.country.code
@@ -111,7 +111,7 @@ app.controller('EditController', function ($state, $stateParams, $http) {
     .success(function(data) {
       edit.countrys = data;
 
-      $http.get('http://localhost:8000/api/menbers/' + $stateParams.id)
+      $http.get('http://localhost:8000/api/members/' + $stateParams.id)
         .success(function(data) {
           edit.member = data;
           angular.forEach(edit.countrys, function(v){
@@ -121,7 +121,7 @@ app.controller('EditController', function ($state, $stateParams, $http) {
   });
 
   edit.update = function(){
-    $http.put('http://localhost:8000/api/menbers/' + $stateParams.id,
+    $http.put('http://localhost:8000/api/members/' + $stateParams.id,
       {
         name: edit.member.name,
         country: edit.member.country.code
