@@ -1,12 +1,7 @@
-
-import 'bootstrap/css/bootstrap.css!';
-import 'FezVrasta/bootstrap-material-design/dist/css/material-wfont.css!';
-import 'FezVrasta/bootstrap-material-design/dist/css/ripples.css!';
-import './main.css!';
-
 import angular from 'angular';
 import 'angular-ui-router';
-import 'bootstrap';
+
+import './main.css!';
 
 // ここにひたすらAngularJSのコードを書いて行く
 var app = angular.module('Es6SonApp', ['ui.router']);
