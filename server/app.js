@@ -23,7 +23,7 @@ server.listen(port,process.env.OPENSHIFT_NODEJS_IP || process.env.IP || undefine
 });
 
 // API definition
-require('./api/members')(app);
-require('./api/country')(app);
+require('./api/beans')(app);
+require('./api/regions')(app);
 
 exports = module.exports = app;
