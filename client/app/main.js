@@ -1,3 +1,10 @@
+import 'FezVrasta/bootstrap-material-design/dist/css/material-wfont.css!';
+
+import 'bootstrap/css/bootstrap.css!';
+import 'FezVrasta/bootstrap-material-design/dist/css/ripples.css!';
+import 'FezVrasta/bootstrap-material-design/dist/css/material.css!';
+import './main.css!';
+
 import angular from 'angular';
 import 'angular-ui-router';
 

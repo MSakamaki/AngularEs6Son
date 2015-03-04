@@ -3,15 +3,17 @@ System.config({
   "transpiler": "babel",
   "paths": {
     "*": "*.js",
-    "github:*": "https://github.jspm.io/*.js",
-    "npm:*": "https://npm.jspm.io/*.js"
+    "github:*": "jspm_packages/github/*.js",
+    "npm:*": "jspm_packages/npm/*.js"
   }
 });
 
 System.config({
   "map": {
+    "FezVrasta/bootstrap-material-design": "github:FezVrasta/bootstrap-material-design@0.2.2",
     "angular": "github:angular/bower-angular@1.3.14",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.13",
+    "bootstrap": "github:twbs/bootstrap@3.3.2",
     "css": "github:systemjs/plugin-css@0.1.6",
     "image": "github:systemjs/plugin-image@0.1.0",
     "jquery": "github:components/jquery@2.1.3",
@@ -54,7 +56,7 @@ System.config({
       "stream-browserify": "npm:stream-browserify@1.0.0"
     },
     "github:jspm/nodelibs-url@0.1.0": {
-      "url": "npm:url@0.10.2"
+      "url": "npm:url@0.10.3"
     },
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
@@ -63,6 +65,10 @@ System.config({
       "clean-css": "npm:clean-css@3.0.10",
       "fs": "github:jspm/nodelibs-fs@0.1.1",
       "path": "github:jspm/nodelibs-path@0.1.0"
+    },
+    "github:twbs/bootstrap@3.3.2": {
+      "css": "github:systemjs/plugin-css@0.1.6",
+      "jquery": "github:components/jquery@2.1.3"
     },
     "npm:amdefine@0.1.0": {
       "fs": "github:jspm/nodelibs-fs@0.1.1",
@@ -147,6 +153,12 @@ System.config({
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "punycode": "npm:punycode@1.3.2",
       "querystring": "github:jspm/nodelibs-querystring@0.1.0",
+      "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:url@0.10.3": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "punycode": "npm:punycode@1.3.2",
+      "querystring": "npm:querystring@0.2.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:util@0.10.3": {
