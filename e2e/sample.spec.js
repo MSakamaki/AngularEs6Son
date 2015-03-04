@@ -1,36 +1,12 @@
 describe('protractor sample',()=> {
 
-  it('reading.fxos homepage', ()=> {
-    browser.get('http://reading.fxos.org');
-    var fxos = element(by.id('fxos-'));
-    expect(fxos.getText()).toEqual('FxOS コードリーディングとは？');
-  });
-
-  it('button check', ()=> {
+  it('list done', ()=> {
     browser.get('http://localhost:9000/');
-    var addBtnEl = element(by.id('addbtn'));
+    var member1 = element(by.repeater('member in list.members').row(0));
     browser.wait(()=>{
-      return addBtnEl.isPresent();
+      return member1.isPresent();
     }, 10000, 'about add cart').then(()=>{
-      expect(addBtnEl.getText()).toEqual('Push!!');
+      expect(member1.getText()).toEqual('ID：1 名前：鈴木 一郎 登録日：2015/01/02 更新日：2015/01/01 所属：Japan 編集 削除');
     });
   });
-
-  it('button click', ()=> {
-    browser.get('http://localhost:9000/');
-    var addBtnEl = element(by.id('addbtn'));
-    var serverMsg = element(by.css('.js-message'));
-    browser.wait(()=>{
-      return addBtnEl.isPresent();
-    }, 10000, 'about ').then(()=>{
-      return addBtnEl.click();
-    }).then(()=>{
-      return browser.wait(()=>{
-        return serverMsg.isPresent();
-      }, 10000, 'no search message');
-    }).then(()=>{
-      expect(serverMsg.getText()).toEqual('Get To : hello express server');
-    });
-  });
-
 });

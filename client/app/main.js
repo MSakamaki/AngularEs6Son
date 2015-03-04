@@ -134,7 +134,7 @@ app.filter('dateFormat', function() {
   var lpad = function(value,str,len) {
     var padStr = "";
     var addlen = 0;
-    if (value == null) {
+    if (value === null) {
       addlen = len;
     } else {
       addlen = parseInt(len) - parseInt(String(value).length);

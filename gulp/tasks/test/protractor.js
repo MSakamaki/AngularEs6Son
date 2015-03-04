@@ -17,7 +17,7 @@ var runProtractor = function(done){
 
   gulp.src(['./.tmp/e2e/**/*.spec.js'])
     .pipe(protractor({
-      configFile: './protractor/protractor.conf.js',
+      configFile: './protractor/protractor.conf.js'
     })).on('error', function(e) {
       process.stdout.write(e + '\n');
       throw e;
