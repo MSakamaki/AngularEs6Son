@@ -1,8 +1,6 @@
 import angular from 'angular';
 import 'angular-ui-router';
 
-import './main.css!';
-
 // ここにひたすらAngularJSのコードを書いて行く
 var app = angular.module('Es6SonApp', ['ui.router']);
 
