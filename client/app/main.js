@@ -4,134 +4,138 @@ import 'angular-ui-router';
 // ここにひたすらAngularJSのコードを書いて行く
 var app = angular.module('Es6SonApp', ['ui.router']);
 
-app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $stateProvider){
+app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $stateProvider) {
 
-    $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/list');
+  $locationProvider.html5Mode(true);
+  $urlRouterProvider.otherwise('/list');
 
-    $stateProvider.state('app', {
-        abstract: true,
-        url: '/#',
-        template: '<div ui-view="header"></div>' +
-                  '<div ui-view="contents"></div>' +
-                  '<div ui-view="footer"></div>'
-      })
+  $stateProvider.state('app', {
+    abstract: true,
+    url: '/#',
+    template: '<div ui-view="header"></div>' +
+      '<div ui-view="contents"></div>' +
+      '<div ui-view="footer"></div>'
+  })
 
-    // アプリルート
-    .state('app.root', {
-      url: '^/',
-      abstract: true,
-      views: {
-        'header@app': {
-          templateUrl: 'app/view/header.html'
-        },
-        'contents@app': {
-          templateUrl: 'app/view/home.html'
-        },
-        'footer@app': {
-          templateUrl: 'app/view/footer.html'
-        }
+  // アプリルート
+  .state('app.root', {
+    url: '^/',
+    abstract: true,
+    views: {
+      'header@app': {
+        templateUrl: 'app/view/header.html'
+      },
+      'contents@app': {
+        templateUrl: 'app/view/home.html'
+      },
+      'footer@app': {
+        templateUrl: 'app/view/footer.html'
       }
-    })
+    }
+  })
 
-    // メンバー一覧
-    .state('app.root.list', {
-      url: '^/list',
-      views: {
-        'contents@app': {
-          templateUrl: 'app/view/list.html',
-          controllerAs: 'list',
-          controller: 'ListController'
-        }
+  // メンバー一覧
+  .state('app.root.list', {
+    url: '^/list',
+    views: {
+      'contents@app': {
+        templateUrl: 'app/view/list.html',
+        controllerAs: 'list',
+        controller: 'ListController'
       }
-    })
+    }
+  })
 
-    // メンバー登録
-    .state('app.root.add', {
-      url: '^/add',
-      views: {
-        'contents@app': {
-          templateUrl: 'app/view/add.html',
-          controllerAs: 'add',
-          controller: 'AddController'
-        }
+  // メンバー登録
+  .state('app.root.add', {
+    url: '^/add',
+    views: {
+      'contents@app': {
+        templateUrl: 'app/view/add.html',
+        controllerAs: 'add',
+        controller: 'AddController'
       }
-    })
+    }
+  })
 
-    // メンバー編集
-    .state('app.root.edit', {
-      url: '^/edit/:id',
-      views: {
-        'contents@app': {
-          templateUrl: 'app/view/edit.html',
-          controllerAs: 'edit',
-          controller: 'EditController'
-        }
+  // メンバー編集
+  .state('app.root.edit', {
+    url: '^/edit/:id',
+    views: {
+      'contents@app': {
+        templateUrl: 'app/view/edit.html',
+        controllerAs: 'edit',
+        controller: 'EditController'
       }
-    });
+    }
+  });
 });
 
-app.controller('ListController', function ($http) {
+app.controller('ListController', function($http) {
   var list = this;
-  $http.get('http://localhost:8000/api/members')
+  $http.get('http://localhost:8000/api/beans')
     .success(function(data) {
-      list.members = data;
-  });
-  list.delete = function(id){
-    $http.delete('http://localhost:8000/api/members/' + id)
-    .success(function() {
-      $http.get('http://localhost:8000/api/members')
-      .success(function(data) {
-        list.members = data;
-      });
+      list.beans = data;
     });
-  };
-});
-app.controller('AddController', function ($state, $http) {
-  var add = this;
-  add.countrys=[];
-  $http.get('http://localhost:8000/api/countrys')
+  $http.get('http://localhost:8000/api/regions')
     .success(function(data) {
-      add.countrys = data;
-  });
-  add.register = function(){
-    $http.post('http://localhost:8000/api/members',
-      {
-        name: add.member.name,
-        country: add.member.country.code
-      }).success(function(){
-        $state.go('app.root.list');
-      });
-  };
-});
-app.controller('EditController', function ($state, $stateParams, $http) {
-  var edit = this;
-  edit.countrys=[];
-  $http.get('http://localhost:8000/api/countrys')
-    .success(function(data) {
-      edit.countrys = data;
-
-      $http.get('http://localhost:8000/api/members/' + $stateParams.id)
-        .success(function(data) {
-          edit.member = data;
-          angular.forEach(edit.countrys, function(v){
-            if(v.code === edit.member.country) edit.member.country = v;
+      list.regions = data;
+    });
+  list.delete = function(id) {
+    $http.delete('http://localhost:8000/api/beans/' + id)
+      .success(function() {
+        $http.get('http://localhost:8000/api/beans')
+          .success(function(data) {
+            list.beans = data;
           });
       });
-  });
+  };
+});
+app.controller('AddController', function($state, $http) {
+  var add = this;
+  add.regions = [];
+  $http.get('http://localhost:8000/api/regions')
+    .success(function(data) {
+      add.regions = data;
+    });
+  add.register = function() {
+    $http.post('http://localhost:8000/api/beans', {
+      brand: add.bean.brand,
+      amount: add.bean.amount,
+      importDate: add.bean.importDate && add.bean.importDate.toISOString(),
+      region: add.bean.region
+    }).success(function() {
+      $state.go('app.root.list');
+    });
+  };
+});
+app.controller('EditController', function($state, $stateParams, $http) {
+  var edit = this;
+  edit.regions = [];
+  $http.get('http://localhost:8000/api/regions')
+    .success(function(data) {
+      edit.regions = data;
 
-  edit.update = function(){
-    $http.put('http://localhost:8000/api/members/' + $stateParams.id,
-      {
-        name: edit.member.name,
-        country: edit.member.country.code
-      }).success(function() {
+      $http.get('http://localhost:8000/api/beans/' + $stateParams.id)
+        .success(function(data) {
+          data.importDate = data.importDate && new Date(data.importDate);
+          edit.bean = data;
+        });
+    });
+
+  edit.update = function() {
+    $http.put('http://localhost:8000/api/beans/' + $stateParams.id, {
+      brand: edit.bean.brand,
+      amount: edit.bean.amount,
+      importDate: edit.bean.importDate && edit.bean.importDate.toISOString(),
+      region: edit.bean.region
+    }).success(function() {
       $state.go('app.root.list');
     });
   };
 });
 app.filter('dateFormat', function() {
-  var lpad = function(value,str,len) {
+  var lpad = function(value, str, len) {
     var padStr = "";
     var addlen = 0;
     if (value === null) {
@@ -140,7 +144,7 @@ app.filter('dateFormat', function() {
       addlen = parseInt(len) - parseInt(String(value).length);
       padStr = String(value);
     }
-    for(var i=0;i<addlen;i++){
+    for (var i = 0; i < addlen; i++) {
       padStr = "" + str + padStr;
     }
     return padStr;
@@ -149,25 +153,25 @@ app.filter('dateFormat', function() {
   return function(input) {
     var dt = new Date(input);
     return dt.getFullYear() + '/' +
-           lpad((dt.getMonth()+1),'0',2) + '/' +
-           lpad(dt.getDate(),'0',2);
+      lpad((dt.getMonth() + 1), '0', 2) + '/' +
+      lpad(dt.getDate(), '0', 2);
   };
 });
-app.filter('countryName', function($http) {
-  var country=[];
-  $http.get('http://localhost:8000/api/countrys')
+app.filter('regionName', function($http) {
+  var region = [];
+  $http.get('http://localhost:8000/api/regions')
     .success(function(data) {
-      country = data;
-  });
+      region = data;
+    });
   return function(input) {
-    var ret='';
-    angular.forEach(country,function(v){
-      if (v.code === input) ret = v.name;
+    var ret = '';
+    angular.forEach(region, function(v) {
+      if (v.id === input) ret = v.name;
     });
     return ret;
   };
 });
-app.factory('member', function () {
-    var member = {};
-    return member;
-  });
+app.factory('bean', function() {
+  var bean = {};
+  return bean;
+});
