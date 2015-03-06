@@ -13,7 +13,7 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
     abstract: true,
     url: '/#',
     template: '<div ui-view="header"></div>' +
-      '<div ui-view="contents"></div>' +
+      '<div ui-view="contents" class="main"></div>' +
       '<div ui-view="footer"></div>'
   })
 

@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">産地</label>
-      <select ng-model="edit.bean.region" name="region" ng-model="edit.bean.region" ng-options="c.id as c.name for c in edit.regions"></select>
+      <select class="form-control" ng-model="edit.bean.region" name="region" ng-model="edit.bean.region" ng-options="c.id as c.name for c in edit.regions"></select>
     </div>
     <div class="form-group">
       <label for="amount">数量(t)</label>
@@ -24,7 +24,7 @@
       <input type="date" class="form-control" name="importDate" ng-model="edit.bean.importDate" required>
     </div>
     <button type="submit" class="btn btn-warning">変更</button>
-    <button class="btn btn-default" ui-sref="app.root.list">キャンセル</button>
+    <button class="btn btn-default btn-material-brown-100" ui-sref="app.root.list">キャンセル</button>
   </form>
 
 </div>
