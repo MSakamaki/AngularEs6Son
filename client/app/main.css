@@ -1,5 +1,20 @@
+body {
+  padding-top: 70px;
+  background-image: url(/images/10141405683_1237807143_k.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
+}
+
+.main {
+
+}
+
 .footer {
   border-top: 1px solid #009587;
   margin-top: 14px;
   padding: 7px 0;
+  background: #fff;
 }
