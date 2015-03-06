@@ -5,16 +5,28 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #464646;
 }
 
-.main {
+.form-control {
+  color: #333;
+}
 
+.form-control::-webkit-input-placeholder {
+  color: #5b5b5b;
+}
+.form-control::-moz-placeholder {
+  color: #5b5b5b;
+}
+.form-control:-moz-placeholder {
+  color: #5b5b5b;
+}
+.form-control:-ms-input-placeholder {
+  color: #5b5b5b;
 }
 
 .footer {
-  border-top: 1px solid #009587;
+  border-top: 1px solid #333;
   margin-top: 14px;
   padding: 7px 0;
-  background: #fff;
+  color: #5b5b5b
 }
