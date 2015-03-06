@@ -13,8 +13,8 @@ git clone https://github.com/MSakamaki/AngularEs6Son.git
 cd AngularEs6Son
 
 npm install
+jspm inject
 jspm install
-jspm install angular-ui-router -o "{ main: 'angular-ui-router', 'angular-ui-router': {'deps': ['angular'] } }"
 
 ```
 
