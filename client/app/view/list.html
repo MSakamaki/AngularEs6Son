@@ -1,16 +1,31 @@
-<div>
-<div ui-sref="app.root.add()">新規登録</div>
-一覧画面です
+<div class="container">
 
-<ul>
-  <li ng-repeat="member in list.members">
-    ID：{{member.id}}
-    名前：{{member.name}}
-    登録日：{{member.register | dateFormat}}
-    更新日：{{member.update | dateFormat}}
-    所属：{{member.country | countryName}}
-    <span ui-sref="app.root.edit({id: member.id })">編集</span>
-    <span ng-click="list.delete(member.id)">削除</span>
-  </li>
-</ul>
+  <ul class="breadcrumb" style="margin-bottom: 5px;">
+    <li class="active">入荷一覧</li>
+  </ul>
+
+  <h2>
+    入荷一覧
+    <a ui-sref="app.root.add()" class="btn btn-warning">新規登録</a>
+  </h2>
+
+  <div class="list-group">
+    <div ng-repeat="bean in list.beans">
+      <div class="list-group-item">
+        <div class="row-picture">
+          <img class="circle" src="http://lorempixel.com/56/56/people/1" alt="icon">
+        </div>
+        <div class="row-content">
+          <p class="list-group-item-text">{{bean.importDate | date:'yyyy-MM-dd'}}</p>
+          <h4 class="list-group-item-heading">{{bean.brand}}</h4>
+          <p class="list-group-item-text">{{bean.region | regionName}} {{bean.amount}} t</p>
+          <div>
+            <a ui-sref="app.root.edit({id: bean.id })" class="btn btn-primary btn-raised">編集</a>
+            <a ng-click="list.delete(bean.id)" class="btn btn-flat btn-danger">削除</a>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+    </div>
+  </div>
 </div>

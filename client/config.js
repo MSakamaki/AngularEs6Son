@@ -17,6 +17,7 @@ System.config({
     "css": "github:systemjs/plugin-css@0.1.6",
     "image": "github:systemjs/plugin-image@0.1.0",
     "jquery": "github:components/jquery@2.1.3",
+    "twbs/bootstrap": "github:twbs/bootstrap@3.3.2",
     "github:angular-ui/ui-router@0.2.13": {
       "angular": "github:angular/bower-angular@1.3.14"
     },

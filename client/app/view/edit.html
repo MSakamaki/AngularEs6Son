@@ -1,28 +1,30 @@
-<div>
-<div ui-sref="app.root.list()">編集完了(一覧へ)</div>
-<p>編集画面
-<p>会員ID：{{edit.member.id}}
-<p>登録日：{{edit.member.register | dateFormat}}
+<div class="container">
 
-<form novalidate name="member_form">
-  <div>
-    <label for="name">名前の変更</label>
-    <div>
-      <input ng-model="edit.member.name" type="text" 
-             name="name"
-             placeholder="鈴木 更新太郎" required>
-    </div>
-  </div>
-  <div>
-    <label for="country">所属国</label>
-    <div>
-      <select ng-model="edit.member.country" name="country"
-        ng-options="c as c.name for c in edit.countrys"
-             ></select>
-    </div>
-  </div>
-</form>
-<button ng-click="edit.update()">登録完了(一覧へ)</button>  
+  <ul class="breadcrumb" style="margin-bottom: 5px;">
+      <li><a href="/">入荷一覧</a></li>
+      <li class="active">入荷変更:{{edit.bean.importDate | date:'yyyy/MM/dd'}} {{edit.bean.brand}}</li>
+  </ul>
 
+  <h2>入荷変更</h2>
+  <form name="updateForm" novalidate ng-submit="edit.update()">
+    <div class="form-group">
+      <label for="brand">銘柄</label>
+      <input type="text" class="form-control" name="brand" ng-model="edit.bean.brand" placeholder="例）キリマンジャロ" required>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">産地</label>
+      <select ng-model="edit.bean.region" name="region" ng-model="edit.bean.region" ng-options="c.id as c.name for c in edit.regions"></select>
+    </div>
+    <div class="form-group">
+      <label for="amount">数量(t)</label>
+      <input type="number" class="form-control" ng-model="edit.bean.amount" name="amount" placeholder="例）100" required>
+    </div>
+    <div class="form-group">
+      <label for="importDate">入荷日</label>
+      <input type="date" class="form-control" name="importDate" ng-model="edit.bean.importDate" required>
+    </div>
+    <button type="submit" class="btn btn-warning">変更</button>
+    <button class="btn btn-default" ui-sref="app.root.list">キャンセル</button>
+  </form>
 
 </div>
