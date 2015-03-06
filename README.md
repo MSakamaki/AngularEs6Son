@@ -10,7 +10,7 @@ AngularJS ES6 ハッカソンテンプレート
 npm install -g jspm
 
 git clone https://github.com/MSakamaki/AngularEs6Son.git
-cd GJBoT
+cd AngularEs6Son
 
 npm install
 jspm install
