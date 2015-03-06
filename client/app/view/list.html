@@ -13,12 +13,24 @@
     <div ng-repeat="bean in list.beans">
       <div class="list-group-item">
         <div class="row-picture">
-          <img class="circle" src="http://lorempixel.com/56/56/people/1" alt="icon">
+          <img class="circle" src="/images/18.jpg" ng-show="bean.region === 1">
+          <img class="circle" src="/images/30.jpg" ng-show="bean.region === 2">
+          <img class="circle" src="/images/35.jpg" ng-show="bean.region === 3">
+          <img class="circle" src="/images/47.jpg" ng-show="bean.region === 4">
+          <img class="circle" src="/images/49.jpg" ng-show="bean.region === 5">
+          <img class="circle" src="/images/79.jpg" ng-show="bean.region === 6">
         </div>
         <div class="row-content">
           <p class="list-group-item-text">{{bean.importDate | date:'yyyy-MM-dd'}}</p>
           <h4 class="list-group-item-heading">{{bean.brand}}</h4>
-          <p class="list-group-item-text">{{bean.region | regionName}} {{bean.amount}} t</p>
+          <p class="list-group-item-text">
+            <span>{{bean.region | regionName}}</span>
+            <span ng-class="{
+              'text-info': bean.amount > 1000,
+              'text-success': bean.amount <= 1000 && bean.amount > 500,
+              'text-danger': bean.amount <= 500
+            }">{{bean.amount}} t</span>
+          </p>
           <div>
             <a ui-sref="app.root.edit({id: bean.id })" class="btn btn-primary btn-raised">編集</a>
             <a ng-click="list.delete(bean.id)" class="btn btn-flat btn-danger">削除</a>
