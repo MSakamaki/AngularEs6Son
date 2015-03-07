@@ -1,14 +1,12 @@
+import { REGIONS_URL } from 'app/urls';
+
 export function regionNameFilter($http) {
   var region = [];
-  $http.get('http://localhost:8000/api/regions')
-    .success(function(data) {
-      region = data;
-    });
-  return function(input) {
-    var ret = '';
-    angular.forEach(region, function(v) {
-      if (v.id === input) ret = v.name;
-    });
-    return ret;
-  };
+  $http.get(REGIONS_URL)
+    .success((data) => region = data)
+  return (input) => {
+    var ret = ''
+    angular.forEach(region, (v) => { if (v.id === input) ret = v.name })
+    return ret
+  }
 }
