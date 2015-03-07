@@ -1,20 +1,22 @@
+import { BEANS_URL, REGIONS_URL } from 'app/urls';
+
 export class ListController {
   constructor($http) {
     var list = this;
-    $http.get('http://localhost:8000/api/beans')
+    $http.get(BEANS_URL)
       .success(function(data) {
         list.beans = data;
       });
-    $http.get('http://localhost:8000/api/regions')
+    $http.get(REGIONS_URL)
       .success(function(data) {
         list.regions = data;
       });
   }
 
   delete(id) {
-    $http.delete('http://localhost:8000/api/beans/' + id)
+    $http.delete(`${BEANS_URL}/${id}`)
       .success(function() {
-        $http.get('http://localhost:8000/api/beans')
+        $http.get(BEANS_URL)
           .success(function(data) {
             list.beans = data;
           });

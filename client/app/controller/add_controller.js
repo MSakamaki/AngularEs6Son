@@ -1,13 +1,15 @@
+import { BEANS_URL, REGIONS_URL } from 'app/urls';
+
 export class AddController {
   constructor($state, $http) {
     var add = this;
     add.regions = [];
-    $http.get('http://localhost:8000/api/regions')
+    $http.get(REGIONS_URL)
       .success(function(data) {
         add.regions = data;
       });
     add.register = function() {
-      $http.post('http://localhost:8000/api/beans', {
+      $http.post(BEANS_URL, {
         brand: add.bean.brand,
         amount: add.bean.amount,
         importDate: add.bean.importDate && add.bean.importDate.toISOString(),
