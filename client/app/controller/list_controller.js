@@ -2,14 +2,13 @@ import { BEANS_URL, REGIONS_URL } from 'app/urls';
 
 export class ListController {
   constructor($http) {
-    var list = this;
     $http.get(BEANS_URL)
       .success(function(data) {
-        list.beans = data;
+        this.beans = data;
       });
     $http.get(REGIONS_URL)
       .success(function(data) {
-        list.regions = data;
+        this.regions = data;
       });
   }
 
@@ -18,7 +17,7 @@ export class ListController {
       .success(function() {
         $http.get(BEANS_URL)
           .success(function(data) {
-            list.beans = data;
+            this.beans = data;
           });
       });
   }

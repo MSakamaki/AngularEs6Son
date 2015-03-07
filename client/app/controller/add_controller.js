@@ -2,18 +2,17 @@ import { BEANS_URL, REGIONS_URL } from 'app/urls';
 
 export class AddController {
   constructor($state, $http) {
-    var add = this;
     add.regions = [];
     $http.get(REGIONS_URL)
       .success(function(data) {
-        add.regions = data;
+        this.regions = data;
       });
-    add.register = function() {
+    this.register = function() {
       $http.post(BEANS_URL, {
-        brand: add.bean.brand,
-        amount: add.bean.amount,
-        importDate: add.bean.importDate && add.bean.importDate.toISOString(),
-        region: add.bean.region
+        brand: this.bean.brand,
+        amount: this.bean.amount,
+        importDate: this.bean.importDate && this.bean.importDate.toISOString(),
+        region: this.bean.region
       }).success(function() {
         $state.go('app.root.list');
       });
