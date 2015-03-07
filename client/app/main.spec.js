@@ -1,7 +1,20 @@
 /* jshint -W097 */
 
-describe('bootstrap.js test', () => {
+describe('Controller: AddController', ()=> {
+  // load the controller's module
+  beforeEach(angular.module('Es6SonApp'));
+  var subject = {};
+  var scope = {};
+
+  beforeEach(inject([$controller, $rootScope, ()=> {
+    scope = $rootScope.$new();
+    subject = $controller('AddControler', {
+      $scope: scope
+    });
+  }]));
+
   it('test one...', () => {
-    expect(1).to.equal(1);
+    console.log(subject);
+    expect(0).to.equal(0);
   });
 });
