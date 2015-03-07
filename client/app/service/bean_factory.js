@@ -1,4 +1,6 @@
-export function beanFactory() {
-  var bean = {};
-  return bean;
+export class BeanFactory {
+  constructor() {
+    var bean = {};
+    return bean;
+  }
 }

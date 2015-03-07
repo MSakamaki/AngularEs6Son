@@ -1,18 +1,20 @@
-export function editController($state, $stateParams, $http) {
-  var edit = this;
-  edit.regions = [];
-  $http.get('http://localhost:8000/api/regions')
-    .success(function(data) {
-      edit.regions = data;
+export class EditController {
+  constructor($state, $stateParams, $http) {
+    var edit = this;
+    edit.regions = [];
+    $http.get('http://localhost:8000/api/regions')
+      .success(function(data) {
+        edit.regions = data;
 
-      $http.get('http://localhost:8000/api/beans/' + $stateParams.id)
-        .success(function(data) {
-          data.importDate = data.importDate && new Date(data.importDate);
-          edit.bean = data;
-        });
-    });
+        $http.get('http://localhost:8000/api/beans/' + $stateParams.id)
+          .success(function(data) {
+            data.importDate = data.importDate && new Date(data.importDate);
+            edit.bean = data;
+          });
+      });
+  }
 
-  edit.update = function() {
+  update() {
     $http.put('http://localhost:8000/api/beans/' + $stateParams.id, {
       brand: edit.bean.brand,
       amount: edit.bean.amount,
@@ -21,5 +23,5 @@ export function editController($state, $stateParams, $http) {
     }).success(function() {
       $state.go('app.root.list');
     });
-  };
+  }
 }

@@ -1,12 +1,10 @@
 import angular from 'angular';
 import 'angular-ui-router';
 import { regionNameFilter } from 'app/filter/region_name';
-import { beanFactory } from 'app/service/bean_factory';
-import { listController } from 'app/controller/list_controller';
-import { addController } from 'app/controller/add_controller';
-import { editController } from 'app/controller/edit_controller';
-
-console.log("listController", listController)
+import { BeanFactory } from 'app/service/bean_factory';
+import { ListController } from 'app/controller/list_controller';
+import { AddController } from 'app/controller/add_controller';
+import { EditController } from 'app/controller/edit_controller';
 
 // ここにひたすらAngularJSのコードを書いて行く
 var app = angular.module('Es6SonApp', ['ui.router']);
@@ -79,7 +77,7 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
 });
 
 app.filter('regionName', regionNameFilter)
-app.factory('bean', beanFactory)
-app.controller('ListController', listController)
-app.controller('AddController', addController)
-app.controller('EditController', editController)
+app.factory('bean', BeanFactory)
+app.controller('ListController', ListController)
+app.controller('AddController', AddController)
+app.controller('EditController', EditController)
