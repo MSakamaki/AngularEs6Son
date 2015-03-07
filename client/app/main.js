@@ -1,5 +1,10 @@
 import angular from 'angular';
 import 'angular-ui-router';
+import { regionNameFilter } from 'app/filter/region_name';
+import { BeanFactory } from 'app/service/bean_factory';
+import { ListController } from 'app/controller/list_controller';
+import { AddController } from 'app/controller/add_controller';
+import { EditController } from 'app/controller/edit_controller';
 
 // ここにひたすらAngularJSのコードを書いて行く
 var app = angular.module('Es6SonApp', ['ui.router']);
@@ -71,84 +76,8 @@ app.config(function($locationProvider, $httpProvider, $urlRouterProvider, $state
   });
 });
 
-app.controller('ListController', function($http) {
-  var list = this;
-  $http.get('http://localhost:8000/api/beans')
-    .success(function(data) {
-      list.beans = data;
-    });
-  $http.get('http://localhost:8000/api/regions')
-    .success(function(data) {
-      list.regions = data;
-    });
-  list.delete = function(id) {
-    $http.delete('http://localhost:8000/api/beans/' + id)
-      .success(function() {
-        $http.get('http://localhost:8000/api/beans')
-          .success(function(data) {
-            list.beans = data;
-          });
-      });
-  };
-});
-app.controller('AddController', function($state, $http) {
-  var add = this;
-  add.regions = [];
-  $http.get('http://localhost:8000/api/regions')
-    .success(function(data) {
-      add.regions = data;
-    });
-  add.register = function() {
-    $http.post('http://localhost:8000/api/beans', {
-      brand: add.bean.brand,
-      amount: add.bean.amount,
-      importDate: add.bean.importDate && add.bean.importDate.toISOString(),
-      region: add.bean.region
-    }).success(function() {
-      $state.go('app.root.list');
-    });
-  };
-});
-app.controller('EditController', function($state, $stateParams, $http) {
-  var edit = this;
-  edit.regions = [];
-  $http.get('http://localhost:8000/api/regions')
-    .success(function(data) {
-      edit.regions = data;
-
-      $http.get('http://localhost:8000/api/beans/' + $stateParams.id)
-        .success(function(data) {
-          data.importDate = data.importDate && new Date(data.importDate);
-          edit.bean = data;
-        });
-    });
-
-  edit.update = function() {
-    $http.put('http://localhost:8000/api/beans/' + $stateParams.id, {
-      brand: edit.bean.brand,
-      amount: edit.bean.amount,
-      importDate: edit.bean.importDate && edit.bean.importDate.toISOString(),
-      region: edit.bean.region
-    }).success(function() {
-      $state.go('app.root.list');
-    });
-  };
-});
-app.filter('regionName', function($http) {
-  var region = [];
-  $http.get('http://localhost:8000/api/regions')
-    .success(function(data) {
-      region = data;
-    });
-  return function(input) {
-    var ret = '';
-    angular.forEach(region, function(v) {
-      if (v.id === input) ret = v.name;
-    });
-    return ret;
-  };
-});
-app.factory('bean', function() {
-  var bean = {};
-  return bean;
-});
+app.filter('regionName', regionNameFilter)
+app.factory('bean', BeanFactory)
+app.controller('ListController', ListController)
+app.controller('AddController', AddController)
+app.controller('EditController', EditController)
