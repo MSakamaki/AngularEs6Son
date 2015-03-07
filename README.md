@@ -1,6 +1,8 @@
 AngularJS ES6 ハッカソンテンプレート
 ----
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Kuniwak/AngularEs6Son?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
+
 
 ### Get Started
 
